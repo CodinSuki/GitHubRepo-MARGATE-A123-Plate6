@@ -1,43 +1,43 @@
 package PLATE6;
+
 import java.util.Scanner;
 
 public class ProblemNumberThree {
-    int vertices;
-    int matrix[][];
-    //initializes the mtrix	
-    ProblemNumberThree(int vertices){ // Constructor; vertices as argument
-        this.vertices = vertices; //vertices = number of nodes in the graph
-        matrix = new int[vertices][vertices]; //allocate memory, adjacency matrix is a square matrix dimension to the number of nodes e.g 3 x 3 = 3 vertices
+    int MargateVertices;
+    int[][] MargateMatrix;
+
+    ProblemNumberThree(int MargateVertices) { // Constructor
+        this.MargateVertices = MargateVertices;
+        MargateMatrix = new int[MargateVertices][MargateVertices];
     }
     
-    void addEdge(int source, int destination) { // Allow multiple edges and loops
-        matrix[source][destination]++; //if the link is present then the number is added/incremented 
+    void MargateAddEdge(int source, int destination) { // Method to add an edge
+        MargateMatrix[source][destination]++;
     }
-  
+
+    boolean MargateDepthFirstSearch(int vertex, boolean[] MargateVisited, int parent) {
+        MargateVisited[vertex] = true;
+        for (int i = 0; i < MargateVertices; i++) {
+            if (MargateMatrix[vertex][i] > 0) { // Check if there is an edge
+                if (!MargateVisited[i]) { // If vertex is not visited
+                    if (MargateDepthFirstSearch(i, MargateVisited, vertex)) {
+                        return true;
+                    }
+                } else if (i != parent) { // If an adjacent vertex is visited and not parent
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     
-    boolean DepthFirstSearch (int vertex, boolean[] visited, int Main) { //
-    	visited[vertex] = true;
-    	 for (int i = 0; i < vertices; i++) { //code goes throouugh all vertices/edges /cooobnnections	
-             if (matrix[vertex][i] > 0) { //vhecks if vertex has an edge and if yes then
-                 if (!visited[i]) { // it will check If the vertex is not visited
-                     if (DepthFirstSearch(i, visited, vertex)) {//then if it hasnt then it will result in rrepeating  making i as int and marking verrtex as 
-                         return true;								//the parent 	
-                     }
-                 } else if (i != Main) { //iif an adjacent vertex is visited again and not a parent of current vertex there is a cycle
-                     return true;
-                 }
-             }
-         }
-         return false;
-     }
-    
-    void checkCycle() {
-        boolean[] visited = new boolean[vertices]; //initialize an array to know what has been visited or not
-        for (int i = 0; i < vertices; i++) { //loops thrrough all vertices
-            if (!visited[i]) { //Dont recur for already visited vertices
-                if (DepthFirstSearch(i, visited, -1)) { //visited is true, verrtex has been visited, and -1 so that it indicatees starting point 
-                    System.out.println("Graph contains a cycle"); // prints if visited is true, through out i has been visited and rresulted into true 
-                    return;										  //-1 is initiated to avoid main node/parent confusioon soo its intiatilized as the startign point
+    void MargateCheckCycle() {
+        boolean[] MargateVisited = new boolean[MargateVertices];
+        for (int i = 0; i < MargateVertices; i++) {
+            if (!MargateVisited[i]) { // If the vertex is not visited
+                if (MargateDepthFirstSearch(i, MargateVisited, -1)) {
+                    System.out.println("Graph contains a cycle");
+                    return;
                 }
             }
         }
@@ -45,31 +45,24 @@ public class ProblemNumberThree {
     }
     
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
+            Scanner scanner = new Scanner(System.in) {
             System.out.print("Enter number of Vertices: ");
-            int vertices = scanner.nextInt();
-            ProblemNumberThree graph = new ProblemNumberThree(vertices); //connects the vertices input to prroblem number six constructor so that it knows
-            System.out.print("Enter number of Edges: ");		//how many nodes are in the graph
-            int edges = scanner.nextInt();
+            int MargateVertices = scanner.nextInt();
+            ProblemNumberThree graph = new ProblemNumberThree(MargateVertices);
+            System.out.print("Enter number of Edges: ");
+            int MargateEdges = scanner.nextInt();
             
-            for (int i = 0; i < edges; i++) { //code to looop edges question based on edges input
-                System.out.println("Enter the source vertex: ");
-                int source = scanner.nextInt();
-                System.out.println("Enter the destination vertex: ");
-                int destination = scanner.nextInt();
+            for (int i = 0; i < MargateEdges; i++) {
+                System.out.print("Enter the source vertex: ");
+                int MargateSource = scanner.nextInt();
+                System.out.print("Enter the destination vertex: ");
+                int MargateDestination = scanner.nextInt();
                 
-                graph.addEdge(source, destination); //calls upon .addEdge for the source and destination 
+                graph.MargateAddEdge(MargateSource, MargateDestination);
             }
             
-            graph.checkCycle(); 
-            
-        } catch(Exception e) { // catch method made to catch error if source/destination is overr the vertices given
-        	System.out.println("Please enter the proper source/destination: ");
-        	e.printStackTrace();
-        	
-        }
-    
+            graph.MargateCheckCycle();
      
+        }
     }
-   
 }
