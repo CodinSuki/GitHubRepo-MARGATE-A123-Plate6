@@ -3,12 +3,12 @@ package PLATE6;
 import java.util.Scanner;
 
 public class ProblemNumberTwo {
-    int vertices;
+    int MargateVertices;
     int matrix[][];
     
-    ProblemNumberTwo(int vertices){ // Constructor; vertices as argument
-        this.vertices = vertices; // vertices = number of nodes in the graph
-        matrix = new int[vertices][vertices]; // allocate memory
+    ProblemNumberTwo(int MargateVertices){ // Constructor; vertices as argument
+        this.vertices = MargateVertices; // vertices = number of nodes in the graph
+        matrix = new int[vertices][MargateVertices]; // allocate memory
     }
     
     void inputMatrix(Scanner scanner) { // Method to input the adjacency matrix
