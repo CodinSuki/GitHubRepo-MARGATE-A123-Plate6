@@ -3,46 +3,46 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProblemNumberOne {
-    int vertices;
-    List<List<Integer>> adjList;
+    int MargateVertices;
+    List<List<Integer>> MargateAdjList;
     
-    ProblemNumberOne(int vertices) { // Constructor; vertices as argument
-        this.vertices = vertices; // vertices = number of nodes in the graph
-        adjList = new ArrayList<>(); // initialize adjacency list
-        for (int i = 0; i < vertices; i++) {
-            adjList.add(new ArrayList<>());
+    ProblemNumberOne(int MargateVertices) { // Constructor; vertices as argument
+        this.MargateVertices = MargateVertices; // vertices = number of nodes in the graph
+        MargateAdjList = new ArrayList<>(); // initialize adjacency list
+        for (int i = 0; i < MargateVertices; i++) {
+            MargateAdjList.add(new ArrayList<>());
         }
     }
     
-    void addEdge(int u, int v) { // Method to add an edge
-        adjList.get(u).add(v);
-        adjList.get(v).add(u); // Since the graph is undirected
+    void MargateAddEdge(int u, int v) { // Method to add an edge
+        MargateAdjList.get(u).add(v);
+        MargateAdjList.get(v).add(u); // Since the graph is undirected
     }
 
-    void inputEdges(Scanner scanner) { // Method to input edges
-        System.out.println("Enter number of edges:");
-        int edges = scanner.nextInt();
+    void MargateInputEdges(Scanner scanner) { // Method to input edges
+        System.out.println("Enter number of MargateEdges:");
+        int MargateEdges = scanner.nextInt();
         System.out.println("Enter the edges (u v):");
-        for (int i = 0; i < edges; i++) {
+        for (int i = 0; i < MargateEdges; i++) {
             int u = scanner.nextInt();
             int v = scanner.nextInt();
-            addEdge(u, v);
+            MargateAddEdge(u, v);
         }
     }
 
-    void DFS(int v, boolean[] visited) { // Depth-First Search to mark connected vertices
-        visited[v] = true;
-        for (int neighbor : adjList.get(v)) {
-            if (!visited[neighbor]) {
-                DFS(neighbor, visited);
+    void MargateDFS(int v, boolean[] MargateVisited) { // Depth-First Search to mark connected vertices
+        MargateVisited[v] = true;
+        for (int neighbor : MargateAdjList.get(v)) {
+            if (!MargateVisited[neighbor]) {
+                MargateDFS(neighbor, MargateVisited);
             }
         }
     }
     
-    boolean isConnected() { // Method to check if the graph is connected
-        boolean[] visited = new boolean[vertices];
-        DFS(0, visited); // Start DFS from the first vertex
-        for (boolean vertex : visited) {
+    boolean MargateIsConnected() { // Method to check if the graph is connected
+        boolean[] MargateVisited = new boolean[MargateVertices];
+        MargateDFS(0, MargateVisited); // Start DFS from the first vertex
+        for (boolean vertex : MargateVisited) {
             if (!vertex) {
                 return false; // If any vertex is not visited, graph is not connected
             }
@@ -50,32 +50,32 @@ public class ProblemNumberOne {
         return true;
     }
     
-    int countConnectedComponents() { // Method to count the number of connected components
-        boolean[] visited = new boolean[vertices];
-        int count = 0;
-        for (int i = 0; i < vertices; i++) {
-            if (!visited[i]) {
-                DFS(i, visited); // Start DFS from the unvisited vertex
-                count++; // Increment the count of connected components
+    int MargateCountConnectedComponents() { // Method to count the number of connected components
+        boolean[] MargateVisited = new boolean[MargateVertices];
+        int MargateCount = 0;
+        for (int i = 0; i < MargateVertices; i++) {
+            if (!MargateVisited[i]) {
+                MargateDFS(i, MargateVisited); // Start DFS from the unvisited vertex
+                MargateCount++; // Increment the count of connected components
             }
         }
-        return count;
+        return MargateCount;
     }
     
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter number of vertices: ");
-            int vertices = scanner.nextInt();
-            ProblemNumberOne graph = new ProblemNumberOne(vertices);
+            System.out.print("Enter number of MargateVertices: ");
+            int MargateVertices = scanner.nextInt();
+            ProblemNumberOne graph = new ProblemNumberOne(MargateVertices);
             
-            graph.inputEdges(scanner); // Inputting the edges
+            graph.MargateInputEdges(scanner); // Inputting the edges
             
-            if (graph.isConnected()) {
+            if (graph.MargateIsConnected()) {
                 System.out.println("The graph is connected.");
             } else {
                 System.out.println("The graph is not connected.");
-                int components = graph.countConnectedComponents();
-                System.out.println("The number of connected components is: " + components);
+                int MargateComponents = graph.MargateCountConnectedComponents();
+                System.out.println("The number of connected components is: " + MargateComponents);
             }
         }
     }
