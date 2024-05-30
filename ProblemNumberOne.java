@@ -20,7 +20,7 @@ public class ProblemNumberOne {
     }
 
     void MargateInputEdges(Scanner scanner) { // Method to input edges
-        System.out.println("Enter number of MargateEdges:");
+        System.out.println("Enter number of Edges:");
         int MargateEdges = scanner.nextInt();
         System.out.println("Enter the edges (u v):");
         for (int i = 0; i < MargateEdges; i++) {
@@ -64,7 +64,7 @@ public class ProblemNumberOne {
     
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter number of MargateVertices: ");
+            System.out.print("Enter number of Vertices: ");
             int MargateVertices = scanner.nextInt();
             ProblemNumberOne graph = new ProblemNumberOne(MargateVertices);
             
