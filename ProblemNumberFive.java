@@ -58,7 +58,7 @@ public class ProblemNumberFive {
     }
     
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
+           Scanner scanner = new Scanner(System.in) {
             System.out.print("Enter number of Vertices: ");
             int MargateVertices = scanner.nextInt();
             ProblemNumberFive graph = new ProblemNumberFive(MargateVertices); // Connects the vertices input to ProblemNumberSix constructor
@@ -81,9 +81,7 @@ public class ProblemNumberFive {
                 System.out.println("The graph is not bipartite.");
             }
             
-        } catch(Exception e) { // Catch method made to catch error if source/destination is over the vertices given
-            System.out.println("Please enter the proper source/destination: ");
-            e.printStackTrace();
+ 
         }
     }
 }
